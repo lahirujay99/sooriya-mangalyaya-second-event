@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Model for the contest entry tokens
+model Token {
+  id          String   @id @default(uuid()) // Unique ID for each token (auto-generated)
+  token_code  String   @unique // The actual code the user enters (must be unique)
+  is_valid    Boolean  @default(true)  // Can we even use this token? (Admin can disable)
+  is_used     Boolean  @default(false) // Has this token already been submitted?
+  used_at     DateTime? // When was it used? (Optional: null if not used)
+  created_at  DateTime @default(now()) // When was this token record created?
+  updated_at  DateTime @updatedAt     // When was this token record last updated?
+
+  // Relation to the Response model: A token can have zero or one response linked to it
+  response    Response?
+
+  @@index([token_code]) // Add index for faster lookup by token_code
+  @@index([is_used])    // Add index for potentially faster lookup of unused tokens
+}
+
+// Model for the participant submissions
+model Response {
+  id                 String   @id @default(uuid()) // Unique ID for this submission
+  contest_type       String   // Which contest: 'papaya' only now
+  full_name          String   // Participant's full name (Required)
+  nic                String?  // Participant's NIC (Optional)
+  contact_number     String   // Participant's contact number (Required)
+  papaya_seed_guess  Int      // Guess for papaya seeds
+  submitted_at       DateTime @default(now()) // When was this submission made?
+
+  // Relation back to the Token model: Each response MUST belong to exactly one token
+  token_id           String   @unique // Foreign key linking to the Token's ID (ensures 1 response per token)
+  token              Token    @relation(fields: [token_id], references: [id]) // Defines the relationship
+
+  @@index([token_id])      // Add index for faster lookup by token_id
+  @@index([contest_type])  // Add index for faster lookup by contest type
+}

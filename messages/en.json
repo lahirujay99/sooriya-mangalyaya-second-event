@@ -1,0 +1,51 @@
+{
+    "HomePage": {
+      "mainTitle": "Sooriya Mangalya 2025",
+      "subTitle": "Papaya Seed Count Guessing Contest!"
+    },
+    "TokenEntry": {
+      "title": "Enter Your Token",
+      "instructions": "Enter the unique token code provided to participate.",
+      "tokenLabel": "Token Code",
+      "placeholder": "Enter token here (e.g., YF0345)",
+      "validateButton": "Proceed",
+      "validatingButton": "Processing..."
+    },
+    "GuessPage": {
+      "pageTitle": "Submit Your Guess",
+      "backToHome": "Back to Home"
+    },
+    "GuessForm": {
+      "title": "Submit Your Guess",
+      "papayaSeedTitle": "Papaya Seed Count Guess",
+      "papaya": "Papaya Seed Count",
+      "nameLabel": "Full Name",
+      "nicLabel": "NIC (Optional)",
+      "contactLabel": "Contact Number",
+      "guessLabelPapaya": "Your Guess (Number of Seeds)",
+      "submitButton": "Submit Guess",
+      "submittingButton": "Submitting...",
+      "Errors": {
+        "tokenMissing": "Token not found. Please go back and enter your token."
+      }
+    },
+    "Confirmation": {
+      "title": "Submission Received!",
+      "message": "Thank you for participating! Results will be announced soon.",
+      "backHomeLink": "Back to Home"
+    },
+    "Errors": {
+      "tokenRequired": "Please enter your token code.",
+      "tokenMissing": "Token not found. Please go back and enter your token.",
+      "nameRequired": "Full name is required.",
+      "contactRequired": "Contact number is required.",
+      "guessRequiredPapaya": "Please enter your guess for the number of seeds.",
+      "guessInvalidFormat": "The guess format is not valid. Please enter a positive number.",
+      "submissionError": "An error occurred during submission. Please try again later.",
+      "networkError": "Network error. Please check your connection and try again.",
+      "formIncomplete": "Please fill in all required fields.",
+      "invalidToken": "Invalid token provided.",
+      "tokenNotValid": "This token is not valid for the contest.",
+      "tokenUsed": "This token has already been used."
+    }
+  }
