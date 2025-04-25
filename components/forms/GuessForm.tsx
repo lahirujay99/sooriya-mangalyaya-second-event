@@ -19,7 +19,7 @@ const GuessForm: React.FC = () => {
   const [fullName, setFullName] = useState<string>('');
   const [nic, setNic] = useState<string>('');
   const [contactNumber, setContactNumber] = useState<string>('');
-  const [guess, setGuess] = useState<string | number>(''); // Store as string initially for easier input handling
+  const [flowerName, setFlowerName] = useState<string>(''); // Changed from guess to flowerName
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -53,33 +53,25 @@ const GuessForm: React.FC = () => {
          setError(t('Errors.contactRequired'));
          return;
      }
-      if (guess === '' || guess === null) {
-           setError(t('Errors.guessRequiredPapaya'));
+      if (!flowerName.trim()) {
+           setError(t('Errors.guessRequiredFlower'));
            return;
      }
-
-     // --- Type specific guess validation (basic) ---
-     const numGuess = parseInt(String(guess), 10);
-     if (isNaN(numGuess) || numGuess <= 0) {
-        setError(t('Errors.guessInvalidFormat')); // Maybe a specific "must be positive number" error
-        return;
-     }
-     const formattedGuess = numGuess;
 
     // --- Prepare Payload ---
     const payload = {
       tokenCode: token,
-      contestType: 'papaya', // Always papaya now
+      contestType: 'flower', // Changed from papaya to flower
       fullName: fullName.trim(),
       nic: nic.trim() || undefined, // Send undefined if empty
       contactNumber: contactNumber.trim(),
-      guess: formattedGuess,
+      flowerName: flowerName.trim(), // Changed from guess to flowerName
     };
 
     // --- API Call ---
     setIsLoading(true);
     try {
-      const response = await fetch('/api/submit', {
+      const response = await fetch('/api/submit-flower', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -115,14 +107,12 @@ const GuessForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-       <h2 className="text-xl font-semibold text-center mb-4 text-white">{t('papayaSeedTitle')}</h2>
+       <h2 className="text-xl font-semibold text-center mb-4 text-white">{t('flowerTitle')}</h2>
 
        {/* Display errors */}
        <ErrorMessage message={error}/>
 
-       {/* Removed Contest Type Selection */}
-
-      {/* User Information Inputs */}
+       {/* User Information Inputs */}
       <Input
         id="fullName"
         label={t('nameLabel')}
@@ -148,16 +138,15 @@ const GuessForm: React.FC = () => {
          disabled={isLoading}
       />
 
-       {/* Papaya Seed Count Guess Input */}
+       {/* Secret Flower Name Guess Input */}
        <Input
-         id="guess"
-         label={t('guessLabelPapaya')}
-         type="number"
-         value={guess}
-         onChange={(e) => setGuess(e.target.value)}
+         id="flowerName"
+         label={t('guessLabelFlower')}
+         type="text"
+         value={flowerName}
+         onChange={(e) => setFlowerName(e.target.value)}
          required
          disabled={isLoading}
-         min="1" // Basic number constraint
        />
 
       {/* Submission Button */}

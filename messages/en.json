@@ -1,7 +1,7 @@
 {
     "HomePage": {
       "mainTitle": "Sooriya Mangalya 2025",
-      "subTitle": "Papaya Seed Count Guessing Contest!"
+      "subTitle": "Secret Flower Guessing Contest!"
     },
     "TokenEntry": {
       "title": "Enter Your Token",
@@ -18,11 +18,13 @@
     "GuessForm": {
       "title": "Submit Your Guess",
       "papayaSeedTitle": "Papaya Seed Count Guess",
+      "flowerTitle": "Secret Flower Name Guess",
       "papaya": "Papaya Seed Count",
       "nameLabel": "Full Name",
       "nicLabel": "NIC (Optional)",
       "contactLabel": "Contact Number",
       "guessLabelPapaya": "Your Guess (Number of Seeds)",
+      "guessLabelFlower": "Your Guess (Secret Flower Name)",
       "submitButton": "Submit Guess",
       "submittingButton": "Submitting...",
       "Errors": {
@@ -40,6 +42,7 @@
       "nameRequired": "Full name is required.",
       "contactRequired": "Contact number is required.",
       "guessRequiredPapaya": "Please enter your guess for the number of seeds.",
+      "guessRequiredFlower": "Please enter your guess for the secret flower name.",
       "guessInvalidFormat": "The guess format is not valid. Please enter a positive number.",
       "submissionError": "An error occurred during submission. Please try again later.",
       "networkError": "Network error. Please check your connection and try again.",
